@@ -1,0 +1,67 @@
+{% extends 'super.html' %}
+
+{% block content %}
+
+<section class="engine"><a href="https://mobirise.info/w">free html5 templates</a></section><section class="features11 cid-rUxybgVnCg" id="features11-5">
+
+
+
+
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="media-container-row">
+                <div class="mbr-figure m-auto" style="width: 50%;">
+                    <img src="static/images/doctor-world-canstockphoto11903338-800x533.jpg" alt="Mobirise" title="">
+                </div>
+                <div class=" align-left aside-content">
+                    <h2 class="mbr-title pt-2 mbr-fonts-style display-2">Symptom Check</h2>
+                    <div class="mbr-section-text">
+                        <p class="mbr-text mb-5 pt-3 mbr-light mbr-fonts-style display-5">
+                        Please select the suitable option to proceed with the symptom check.</p>
+                    </div>
+
+                    <div class="block-content">
+                        <div class="card p-3 pr-3">
+                            <div class="media">
+                                <div class=" align-self-center card-img pb-3">
+                                    <a href="{{ url_for('page2') }}"><span class="mbr-iconfont mbri-edit" style="color: rgb(85, 180, 212); fill: rgb(85, 180, 212);"></span></a>
+                                </div>
+                                <a href="{{ url_for('form') }}">
+                                  <div class="media-body">
+                                    <h4 class="card-title mbr-fonts-style display-7">
+                                        Preliminary Test for COVID-19</h4>
+                                  </div>
+                                </a>
+                            </div>
+
+                            <div class="card-box">
+                                <p class="block-text mbr-fonts-style display-7">
+                                   If you suspect that you are infected with Covid 19, the preliminary test would verify the level of threat associated with your health and suggest the required medical assistance in case of an emergency.</p>
+                            </div>
+                        </div>
+
+                        <div class="card p-3 pr-3">
+                            <div class="media">
+                                <div class="align-self-center card-img pb-3">
+                                    <a href="{{  url_for('page3')  }}"><span class="mbr-iconfont mbri-users" style="color: rgb(85, 180, 212); fill: rgb(85, 180, 212);"></span></a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="card-title mbr-fonts-style display-7">
+                                        Day By Day Progression of COVID-19</h4>
+                                </div>
+                            </div>
+
+                            <div class="card-box">
+                                <p class="block-text mbr-fonts-style display-7">
+                                    Study how the symptoms of COVID 19 Progress Day by Daya and verify whether your symptoms align or not.<br><br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

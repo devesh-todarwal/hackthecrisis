@@ -19,6 +19,10 @@ section,
   word-wrap: break-word;
 }
 
+.round_div {
+  border-radius: 15px;
+}
+
 a.mbr-iconfont:hover {
   text-decoration: none;
 }
