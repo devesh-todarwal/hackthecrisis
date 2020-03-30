@@ -3,6 +3,7 @@ from sqlalchemy import exc,func
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+"""
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://manan:psql@localhost/manan'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy()
@@ -11,7 +12,6 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-"""
 sample
 @app.route("/", methods=['GET'])
 def index():
