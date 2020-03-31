@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, Markup
 from sqlalchemy import exc,func
 from flask_sqlalchemy import SQLAlchemy
+from pprint import pprint
 
 app = Flask(__name__)
 """
@@ -32,6 +33,12 @@ def index():
 @app.route("/form", methods=['GET'])
 def form():
     return render_template("symptom-form.html")
+
+@app.route("/form_submit", methods=['POST'])
+def form_submit():
+    data = request.form
+    pprint(data)
+    return render_template("results.html", data="data")
 
 @app.route("/page1", methods=['GET'])
 def page1():

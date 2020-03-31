@@ -6,45 +6,39 @@
       <div class="container">
         <div class="media-container">
           <div class="col-md-1 bg-light p-3 mt-5 round_div">
-            <form method="get" action="#">
+            <form method="post" action="{{ url_for('form_submit') }}">
               <div class="align-center pb-3 mt-3 mb-0">
                 <div class="display-5">Fill the form to get an assessment of your risk!</div>
               </div>
               <div class="form-group">
                 <label for="first-name">First name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="Enter your first name">
+                <input type="text" class="form-control" name="fname" id="first-name" placeholder="Enter your first name">
               </div>
               <div class="form-group">
                 <label for="last-name">Last name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Enter your last name">
+                <input type="text" class="form-control" name="lname" id="last-name" placeholder="Enter your last name">
               </div>
               <div class="form-group">
                 <label for="age">Age</label>
-                  <select class="custom-select" id="age">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
+                  <select class="custom-select" name="age" id="age">
+                  {% for i in range(1,101) %}
+                    <option value="{{ i }}">{{ i }}</option>
+                  {% endfor %}
                 </select>
               </div>
               <div class="form-group">
                 <label for="gender">Gender</label>
                 <div class="radio" id="gender">
                   <label class="m-2">
-                    <input type="radio" name="optionsRadios" id="male" value="male">
+                    <input type="radio" name="gender" id="male" value="male">
                     male
                   </label>
                   <label class="m-2">
-                    <input type="radio" name="optionsRadios" id="female" value="female">
+                    <input type="radio" name="gender" id="female" value="female">
                     female
                   </label>
                   <label class="m-2">
-                    <input type="radio" name="optionsRadios" id="other" value="other">
+                    <input type="radio" name="gender" id="other" value="other">
                     other
                   </label>
                 </div>
@@ -52,34 +46,34 @@
               <div class="form-group">
                 <label>In which professional field / in which professional situation are you currently?</label>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="home">
+                  <input type="radio" class="form-check-input" name="prof" id="home">
                   <label class="form-check-label" for="home">I am currently working from home</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="food">
+                  <input type="radio" class="form-check-input" name="prof" id="food">
                   <label class="form-check-label" for="food">Food industry / utilities</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="health">
+                  <input type="radio" class="form-check-input" name="prof" id="health">
                   <label class="form-check-label" for="health">Healthcare industry</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="public">
+                  <input type="radio" class="form-check-input" name="prof" id="public">
                   <label class="form-check-label" for="public">Public service</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="others">
+                  <input type="radio" class="form-check-input" name="prof" id="others">
                   <label class="form-check-label" for="others">Others</label>
                 </div>
               </div>
               <div class="form-group">
                 <label>How much contact is there in your current job with employees / customers?</label>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="no">
+                  <input type="radio" class="form-check-input" name="contact" id="no">
                   <label class="form-check-label" for="home">no contact</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" id="yes">
+                  <input type="radio" class="form-check-input" name="contact" id="yes">
                   <label class="form-check-label" for="food">little contact to a lot of contact</label>
                 </div>
               </div>
