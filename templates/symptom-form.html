@@ -10,14 +10,17 @@
               <div class="align-center pb-3 mt-3 mb-0">
                 <div class="display-5">Fill the form to get an assessment of your risk!</div>
               </div>
+
               <div class="form-group">
                 <label for="first-name">First name</label>
                 <input type="text" class="form-control" name="fname" id="first-name" placeholder="Enter your first name">
               </div>
+
               <div class="form-group">
                 <label for="last-name">Last name</label>
                 <input type="text" class="form-control" name="lname" id="last-name" placeholder="Enter your last name">
               </div>
+
               <div class="form-group">
                 <label for="age">Age</label>
                   <select class="custom-select" name="age" id="age">
@@ -26,57 +29,446 @@
                   {% endfor %}
                 </select>
               </div>
+
               <div class="form-group">
-                <label for="gender">Gender</label>
-                <div class="radio" id="gender">
-                  <label class="m-2">
-                    <input type="radio" name="gender" id="male" value="male">
-                    male
-                  </label>
-                  <label class="m-2">
-                    <input type="radio" name="gender" id="female" value="female">
-                    female
-                  </label>
-                  <label class="m-2">
-                    <input type="radio" name="gender" id="other" value="other">
-                    other
-                  </label>
+                <label>Gender</label>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="gender" value="male"> Male
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" value="female"> Female
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" value="other"> Other
+                    </label>
                 </div>
               </div>
+
               <div class="form-group">
                 <label>In which professional field / in which professional situation are you currently?</label>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="prof" id="home">
+                  <input type="radio" class="form-check-input" name="prof" value="0">
                   <label class="form-check-label" for="home">I am currently working from home</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="prof" id="food">
+                  <input type="radio" class="form-check-input" name="prof" value="0">
                   <label class="form-check-label" for="food">Food industry / utilities</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="prof" id="health">
+                  <input type="radio" class="form-check-input" name="prof" value="1">
                   <label class="form-check-label" for="health">Healthcare industry</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="prof" id="public">
+                  <input type="radio" class="form-check-input" name="prof" value="0">
                   <label class="form-check-label" for="public">Public service</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="prof" id="others">
+                  <input type="radio" class="form-check-input" name="prof" value="0">
                   <label class="form-check-label" for="others">Others</label>
                 </div>
               </div>
+
               <div class="form-group">
                 <label>How much contact is there in your current job with employees / customers?</label>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="contact" id="no">
+                  <input type="radio" class="form-check-input" name="contact" value="0">
                   <label class="form-check-label" for="home">no contact</label>
                 </div>
                 <div class="form-check">
-                  <input type="radio" class="form-check-input" name="contact" id="yes">
+                  <input type="radio" class="form-check-input" name="contact" value="1">
                   <label class="form-check-label" for="food">little contact to a lot of contact</label>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label>Did you have contact with a person who tested positive for COVID-19?</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="contact" value="3"> Yes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="contact" value="-1"> No
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>If yes, when was the last contact?</label>
+                <input type="date" class="form-control" placeholder="Date of last contact">
+              </div>
+
+              <div class="form-group">
+                <label>Are you a smoker?</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="contact" value="2"> Yes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="contact" value="0"> No
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Do you have of any of the following pre-existing conditions??</label><br>
+                <div class="checkbox">
+                  <label><input type="radio" name="conditions" value="1"> Immunodeficiency</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="radio" name="conditions" value="2"> Cardiovascular disease</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="radio" name="conditions" value="1"> Diabetes</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="radio" name="conditions" value="2"> Pre existing lung condtions</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Do you have any other medical conditions?</label>
+                <input type="text" name="conditions-other" class="form-control" placeholder="">
+              </div>
+
+              <div class="form-group">
+                <label>Are you currently taking immunosuppressive drugs?</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="isdrugs" value="1"> Yes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="isdrugs" value="0"> No
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Are you pregnant?</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="pregnant" value="-1"> Yes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="pregnant" value="0"> No
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>How is your general well being?</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="well-being" value="-2"> Good
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="well-being" value="-1"> Better
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="well-being" value="0"> Consistent
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="well-being" value="0"> Bad
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="well-being" value="1"> Worst
+                    </label>
+                </div>
+              </div>
+
+              <div class="align-center m-5">
+                <label>Main symptoms</label>
+              </div>
+
+              <div class="form-group">
+                <label>Fever</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="fever" value="0"> No fever</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="fever" value="0"> 38 - 38.5 &#8451; (mild fever)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="fever" value="0.5"> 38.6 - 39.0 &#8451; (moderate fever)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="fever" value="1"> 39.1 - 39.9 &#8451; (high fever)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="fever" value="3"> > 40 &#8451; (very high fever)
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Shortness of breath</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="shortness-breath" value="-1"> No shortness</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="shortness-breath" value="2"> Greatly increased shortness of breath under stress (high physical exertion)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="shortness-breath" value="1"> lots of breath required at rest
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="shortness-breath" value="3.5"> Severe shortness (feeling as if you are not getting enough air)
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Cough</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="cough" value="-1"> No cough</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="cough" value="1"> Weak cough (without pain)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="cough" value="2"> Cough with mild pain
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="cough" value="3.5"> Severe cough with lung pain
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Muscle and joint pain</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="muscle-joint-pain" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="muscle-joint-pain" value="1"> Yes
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Sore throat</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="sore-throat" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="sore-throat" value="1.5"> Sore throat
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="sore-throat" value="2"> Difficulty in swallowing
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="sore-throat" value="3"> Hardly possible to swallow
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Headache</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="headache" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="headache" value="0.5"> In batches
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="headache" value="2"> All day
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="headache" value="2.5"> Dizziness when standing up
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Nausea / vomitting</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="nausea-vomit" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="nausea-vomit" value="0.5"> Only nausea (no vomitting)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="nausea-vomit" value="1"> vomitting
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="nausea-vomit" value="2"> Repeated vomitting
+                    </label>
+                </div>
+              </div>
+
+              <div class="align-center m-5">
+                <label>Other symptoms</label>
+              </div>
+
+              <div class="form-group">
+                <label>Impaired taste / smell</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="taste-smell" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="taste-smell" value="0.5"> Only taste impairment
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="taste-smell" value="1"> Only odor impairment
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="taste-smell" value="1.5"> Impaired taste and smell
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Nose</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="nose" value="-1"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="nose" value="0.5"> clogged nose
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="nose" value="2"> Difficulty breathing due to runny nose
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="nose" value="2"> Sinus complaints (headeache / sensation of pressure in the forehead region) due to runny nose
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Diarrhea</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="diarrhea" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="diarrhea" value="0.5"> Soft stool (all day)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="diarrhea" value="1"> Liquid stool (all day)
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="diarrhea" value="1.5"> Watery stool (all day)
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Loss of appetite</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="appetite-loss" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="appetite-loss" value="1"> Yes
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Weight loss</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="weight-loss" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="weight-loss" value="0.5"> Yes
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Stomach pain</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="stomach-pain" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="stomach-pain" value="1"> Slight abdominal pain
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="stomach-pain" value="1"> Stomach cramps
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="stomach-pain" value="2.5"> Abdominal cramps with pain posture (cramped, lying, etc.)
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Conjunctivitis</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="conjunctivits" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="conjunctivits" value="0.5"> Yes
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Skin rash</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <span class="text-nowrap"><input type="radio" name="skin-rash" value="0"> No</span>
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="skin-rash" value="0.5"> Limited in places
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="skin-rash" value="1.5"> Larger area
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="skin-rash" value="2"> All over the body
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Lymph node swelling</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="lymph" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="lymph" value="1"> Yes
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Indifference (apathy)</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="apathy" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="apathy" value="1"> Yes
+                    </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Other symptoms</label><br>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input type="radio" name="other-symptoms" value="0"> No
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="other-symptoms" value="0.5"> Yes
+                    </label>
+                </div>
+              </div>
+
               <div class="align-center">
                 <button type="submit" class="btn btn-primary">How susceptible am I?</button>
               </div>

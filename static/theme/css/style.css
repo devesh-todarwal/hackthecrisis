@@ -23,6 +23,10 @@ section,
   border-radius: 15px;
 }
 
+.btn-special:focus {
+  background-color: red
+}
+
 a.mbr-iconfont:hover {
   text-decoration: none;
 }
