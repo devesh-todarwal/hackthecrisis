@@ -20,7 +20,7 @@ def get_final_score(data):
             try:
                 score += float(v)
             except:
-                print(f'\tError -> {k}')
+                pass
 
     format_str = '%Y-%m-%d'
     date = datetime.datetime.strptime(data['contact-date'], format_str)
@@ -49,27 +49,31 @@ def form():
 
 @app.route("/form_submit", methods=['POST'])
 def form_submit():
-    data = request.form
-    score = get_final_score(data)
-    if score < 10:
-        color = 'bg-success'
-        content = 'No risk'
-    elif 10 <= score < 17:
-        color = 'bg-warning'
-        content = 'Moderate risk'
-    elif 17 <= score < 21:
-        color = 'bg-warning'
-        content = 'Consult a nearby doctor'
-    else:
-        color = 'bg-danger'
-        content = 'High risk'
+    try:
+        data = request.form
+        score = get_final_score(data)
+        if score < 10:
+            color = 'bg-success'
+            content = 'No risk'
+        elif 10 <= score < 17:
+            color = 'bg-warning'
+            content = 'Moderate risk'
+        elif 17 <= score < 21:
+            color = 'bg-warning'
+            content = 'Consult a nearby doctor'
+        else:
+            color = 'bg-danger'
+            content = 'High risk'
 
-    result_data = {
-        'value': int(2*score),
-        'content': content,
-        'color': color,
-    }
-    print(result_data)
+        result_data = {
+            'value': int(2*score),
+            'content': content,
+            'color': color,
+        }
+    except:
+        score = 0
+        content = 'An unknown error occurred'
+        color = 'bg-primary'
     return render_template("results.html", data=result_data)
 
 @app.route("/page1", methods=['GET'])
