@@ -2,29 +2,42 @@ from flask import Flask, render_template, request, session, redirect, url_for, M
 from sqlalchemy import exc,func
 from flask_sqlalchemy import SQLAlchemy
 from pprint import pprint
+import datetime
 
 app = Flask(__name__)
-"""
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://manan:psql@localhost/manan'
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy()
-db.init_app(app)
 
-with app.app_context():
-    db.create_all()
+def get_final_score(data):
 
-sample
-@app.route("/", methods=['GET'])
-def index():
-    try:
-        uname, logged_in = session['user']
-        if logged_in:
-            return redirect(url_for("home"))
-        else:
-            return render_template("index.html")
-    except KeyError:
-        return render_template("index.html")
-"""
+
+    fname = data['fname']
+    lname = data['lname']
+    age = data['age']
+    gender = data['gender']
+
+    score = 0
+    for k,v in data.items():
+        if k not in ['fname', 'lname', 'age', 'gender', 'contact-date', 'conditions-other', 'conditions']:
+            try:
+                score += float(v)
+            except:
+                print(f'\tError -> {k}')
+
+    format_str = '%Y-%m-%d'
+    date = datetime.datetime.strptime(data['contact-date'], format_str)
+    days = (datetime.datetime.today() - date).days
+
+    if days < 14:
+        score += 3
+    elif days >= 21:
+        score -= 3
+
+    for val in data.getlist('condititions'):
+        score += float(val)
+
+    if data['conditions-other']:
+        score += 1
+
+    return score
 
 @app.route("/", methods=['GET'])
 def index():
@@ -37,8 +50,27 @@ def form():
 @app.route("/form_submit", methods=['POST'])
 def form_submit():
     data = request.form
-    pprint(data)
-    return render_template("results.html", data="data")
+    score = get_final_score(data)
+    if score < 10:
+        color = 'bg-success'
+        content = 'No risk'
+    elif 10 <= score < 17:
+        color = 'bg-warning'
+        content = 'Moderate risk'
+    elif 17 <= score < 21:
+        color = 'bg-warning'
+        content = 'Consult a nearby doctor'
+    else:
+        color = 'bg-danger'
+        content = 'High risk'
+
+    result_data = {
+        'value': int(2*score),
+        'content': content,
+        'color': color,
+    }
+    print(result_data)
+    return render_template("results.html", data=result_data)
 
 @app.route("/page1", methods=['GET'])
 def page1():

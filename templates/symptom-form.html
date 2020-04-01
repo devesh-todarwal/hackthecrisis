@@ -37,10 +37,10 @@
                         <input type="radio" name="gender" value="male"> Male
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" value="female"> Female
+                        <input type="radio" name="gender" value="female"> Female
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" value="other"> Other
+                        <input type="radio" name="gender" value="other"> Other
                     </label>
                 </div>
               </div>
@@ -95,7 +95,7 @@
 
               <div class="form-group">
                 <label>If yes, when was the last contact?</label>
-                <input type="date" class="form-control" placeholder="Date of last contact">
+                <input type="date" class="form-control" name="contact-date" placeholder="Date of last contact">
               </div>
 
               <div class="form-group">
@@ -113,22 +113,22 @@
               <div class="form-group">
                 <label>Do you have of any of the following pre-existing conditions??</label><br>
                 <div class="checkbox">
-                  <label><input type="radio" name="conditions" value="1"> Immunodeficiency</label>
+                  <label><input type="checkbox" name="conditions" value="1"> Immunodeficiency</label>
                 </div>
                 <div class="checkbox">
-                  <label><input type="radio" name="conditions" value="2"> Cardiovascular disease</label>
+                  <label><input type="checkbox" name="conditions" value="2"> Cardiovascular disease</label>
                 </div>
                 <div class="checkbox">
-                  <label><input type="radio" name="conditions" value="1"> Diabetes</label>
+                  <label><input type="checkbox" name="conditions" value="1"> Diabetes</label>
                 </div>
                 <div class="checkbox">
-                  <label><input type="radio" name="conditions" value="2"> Pre existing lung condtions</label>
+                  <label><input type="checkbox" name="conditions" value="2"> Pre existing lung condtions</label>
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Do you have any other medical conditions?</label>
-                <input type="text" name="conditions-other" class="form-control" placeholder="">
+                <input type="text" name="conditions-other" class="form-control" placeholder="Leave empty if you don't have any other conditions">
               </div>
 
               <div class="form-group">
@@ -470,7 +470,7 @@
               </div>
 
               <div class="align-center">
-                <button type="submit" class="btn btn-primary">How susceptible am I?</button>
+                <button type="submit" class="btn btn-dark">How susceptible am I?</button>
               </div>
             </form>
           </div>

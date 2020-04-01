@@ -3,7 +3,24 @@
 {% block content %}
 <section class="engine"><a href="https://mobirise.info/n">simple site templates</a></section><section class="header12 cid-rUxhpR275Y mbr-fullscreen mbr-parallax-background" id="header12-1">
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);"></div>
-<div class="col-6 bg-light">
-  Results
-</div>
+      <div class="container">
+        <div class="media-container">
+          <div class="row">
+            <div class="col-8">
+              <div class="progress">
+                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="{{ data['value'] }}" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="col-4 text-light">
+              {{ data['value'] }} / 100
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md mt-5 text-light">
+              <div class="display-1">{{ data['content'] }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
 {% endblock %}
