@@ -24,20 +24,29 @@ def get_final_score(data):
             except:
                 pass
 
-    format_str = '%Y-%m-%d'
-    date = datetime.datetime.strptime(data['contact-date'], format_str)
-    days = (datetime.datetime.today() - date).days
+    try:
+        format_str = '%Y-%m-%d'
+        date = datetime.datetime.strptime(data['contact-date'], format_str)
+        days = (datetime.datetime.today() - date).days
 
-    if days < 14:
-        score += 3
-    elif days >= 21:
-        score -= 3
+        if days < 14:
+            score += 3
+        elif days >= 21:
+            score -= 3
+    except:
+        pass
 
-    for val in data.getlist('condititions'):
-        score += float(val)
+    try:
+        for val in data.getlist('condititions'):
+            score += float(val)
+    except:
+        pass
 
-    if data['conditions-other']:
-        score += 1
+    try:
+        if data['conditions-other']:
+            score += 1
+    except:
+        pass
 
     return score
 
@@ -56,7 +65,10 @@ def form_submit():
         score = get_final_score(data)
 
         if score < 0:
-            return render_template('error.html', data={'callback': 'form', 'message': 'The name / age / gender fields are incomplete. Please fill these fields'})
+            return render_template('error.html', data={'callback': 'form', 'message': 'The name / age / gender fields are incomplete. Please fill these fields  '})
+
+        if score == 0:
+            score = 1
 
         if score < 10:
             color = 'bg-success'
@@ -72,12 +84,15 @@ def form_submit():
             content = 'High risk'
 
         result_data = {
-            'value': int(2*score),
+            'value': 60,
             'content': content,
             'color': color,
         }
     except:
         return render_template('error.html', data={'callback': 'form', 'message': 'An unknown error occured'})
+
+    print(result_data)
+    return render_template('results.html', data=result_data)
 
 @app.route("/page1", methods=['GET'])
 def page1():
