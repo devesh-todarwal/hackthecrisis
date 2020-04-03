@@ -8,11 +8,13 @@ app = Flask(__name__)
 
 def get_final_score(data):
 
-
-    fname = data['fname']
-    lname = data['lname']
-    age = data['age']
-    gender = data['gender']
+    try:
+        fname = data['fname']
+        lname = data['lname']
+        age = data['age']
+        gender = data['gender']
+    except:
+        return -1
 
     score = 0
     for k,v in data.items():
@@ -52,6 +54,10 @@ def form_submit():
     try:
         data = request.form
         score = get_final_score(data)
+
+        if score < 0:
+            return render_template('error.html', data={'callback': 'form', 'message': 'The name / age / gender fields are incomplete. Please fill these fields'})
+
         if score < 10:
             color = 'bg-success'
             content = 'No risk'
@@ -71,10 +77,7 @@ def form_submit():
             'color': color,
         }
     except:
-        score = 0
-        content = 'An unknown error occurred'
-        color = 'bg-primary'
-    return render_template("results.html", data=result_data)
+        return render_template('error.html', data={'callback': 'form', 'message': 'An unknown error occured'})
 
 @app.route("/page1", methods=['GET'])
 def page1():
