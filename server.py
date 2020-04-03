@@ -103,5 +103,9 @@ def page2():
 def page3():
     return render_template("page3.html")
 
+@app.route("/map", methods=['GET'])
+def map():
+    return render_template("map.html")
+
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
