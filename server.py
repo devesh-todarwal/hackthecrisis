@@ -67,9 +67,6 @@ def form_submit():
         if score < 0:
             return render_template('error.html', data={'callback': 'form', 'message': 'The name / age / gender fields are incomplete. Please fill these fields  '})
 
-        if score == 0:
-            score = 1
-
         if score < 10:
             color = 'bg-success'
             content = 'No risk'
@@ -84,7 +81,7 @@ def form_submit():
             content = 'High risk'
 
         result_data = {
-            'value': 60,
+            'value': 2*(int(score)),
             'content': content,
             'color': color,
         }
