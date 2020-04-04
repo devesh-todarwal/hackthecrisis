@@ -115,41 +115,52 @@ def bus():
 
 @app.route("/bus_submit", methods=['POST'])
 def bus_submit():
-    src = int(request.form['src'])
-    dst = int(request.form['dst'])
-    print(src,dst)
-    path_len = random.randint(3,5)
-    chosen = -1
-    path = []
-    nodes = [n for n in range(7) if n not in [src,dst]]
-    for j in range(path_len):
-        if chosen != -1:
-            nodes.remove(chosen)
-        chosen = random.choice(nodes)
-        path.append(chosen)
-    path = [src] + path + [dst]
-    path_edges = [[path[i-1],path[i]] for i in range(1,len(path))]
+    try:
+        src = int(request.form['src'])
+        dst = int(request.form['dst'])
+        print(src,dst)
+        path_len = random.randint(3,5)
+        chosen = -1
+        path = []
+        nodes = [n for n in range(7) if n not in [src,dst]]
+        for j in range(path_len):
+            if chosen != -1:
+                try:
+                    nodes.remove(chosen)
+                except:
+                    pass
+            chosen = random.choice(nodes)
+            path.append(chosen)
+        path = [src] + path + [dst]
+        path_edges = [[path[i-1],path[i]] for i in range(1,len(path))]
 
-    rest = list(range(7))
-    rest.remove(src)
-    rest.remove(dst)
+        rest = list(range(7))
+        try:
+            rest.remove(src)
+        except:
+            pass
+        try:
+            rest.remove(dst)
+        except:
+            pass
+        edges = []
+        for i in rest:
+            for j in rest:
+                if i!=j:
+                    edges.append([i,j])
 
-    edges = []
-    for i in rest:
-        for j in rest:
-            if i!=j:
-                edges.append([i,j])
-            
-    data = {
-        'src': src,
-        'dst': dst,
-        'rest': rest,
-        'inv': ['Kalyan-Dombivali', 'Navi Mumbai', 'Thane', 'Thane', 'Ulhasnagar', 'Vasai-Virar', 'Palghar', 'Mira-Bhayandar'],
-        'edges': edges,
-        'path-edges': path_edges,
-    }
-    print(data  )
-    return render_template("bus_submit.html",data=data)
+        data = {
+            'src': src,
+            'dst': dst,
+            'rest': rest,
+            'inv': ['Kalyan-Dombivali', 'Navi Mumbai', 'Thane', 'Thane', 'Ulhasnagar', 'Vasai-Virar', 'Palghar', 'Mira-Bhayandar'],
+            'edges': edges,
+            'path-edges': path_edges,
+        }
+        return render_template("bus_submit.html",data=data)
+    except:
+        return render_template('error.html', data={'callback': 'bus', 'message': 'An unknown error occured'})
+
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
