@@ -120,6 +120,8 @@ def bus_submit():
         dst = int(request.form['dst'])
         print(src,dst)
         path_len = random.randint(3,5)
+        if src == dst:
+            path_len = 0
         chosen = -1
         path = []
         nodes = [n for n in range(7) if n not in [src,dst]]
