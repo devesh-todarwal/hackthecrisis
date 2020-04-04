@@ -1,5 +1,5 @@
 # hackthecrisis
-Developing Website as a part of the Hack A Cause Hackathon to find solutions against COVID19
+Developing Website as a part of the Hack A Cause Hackathon to find solutions against COVID19.
 
 # Requirements
 * Python 3.7+
