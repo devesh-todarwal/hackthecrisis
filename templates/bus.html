@@ -1,0 +1,53 @@
+{% extends 'super.html' %}
+
+{% block content %}
+<section class="engine"><a href="https://mobirise.info/k">develop free website</a></section>
+<section class="header12 cid-rUxhpR275Y mbr-fullscreen mbr-parallax-background" id="header12-1">
+
+    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(35, 35, 35);">
+    </div>
+
+<div class="container">
+  <div class="media-container">
+    <div class="row">
+      <div class="col-12 bg-light p-3 mt-5 round_div">
+        <form method="post" action="{{ url_for('bus_submit') }}">
+          <div class="form-group">
+            <div class="form-row">
+              <label class="my-auto" for="src">Source</label>
+              <select class="custom-select mx-3 col-4" name="src" id="src">
+                {% for i in range(nodes|length) %}
+                  <option value="{{ i }}">{{ nodes[i] }}</option>
+                {% endfor %}
+              </select>
+              <label class="my-auto" for="dst">Destination</label>
+              <select class="custom-select mx-3 col-4" name="dst" id="dst">
+                {% for i in range(nodes|length) %}
+                  <option value="{{ i }}">{{ nodes[i] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        <div class="form-row mt-5">
+          <div class="col-1 align-center">
+            Timely arrival
+          </div>
+          <div class="col-10">
+            <div class="form-group">
+               <input type="range" class="form-control-range my-auto" id="formControlRange" min="0" max="100">
+             </div>
+          </div>
+          <div class="col-1 align-center">
+            Safest route
+          </div>
+        </div>
+          <div class="align-center">
+            <button type="submit" class="btn btn-dark">Get the best route!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}

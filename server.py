@@ -107,5 +107,14 @@ def page3():
 def map():
     return render_template("map.html")
 
+@app.route("/bus", methods=['GET'])
+def bus():
+    nodes = ['Kalyan-Dombivali', 'Navi Mumbai', 'Thane', 'Thane', 'Ulhasnagar', 'Vasai-Virar', 'Palghar', 'Mira-Bhayandar']
+    return render_template("bus.html",nodes=nodes)
+
+@app.route("/bus_submit", methods=['POST'])
+def bus_submit():
+    return render_template("bus_submit.html",)
+
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
