@@ -1,5 +1,10 @@
 {% extends 'super.html' %}
 
+{% block extra_headers %}
+<script src="https://d3js.org/d3.v3.js"></script>
+<script src="static/theme/js/jsnetworkx.js"></script>
+{% endblock %}
+
 {% block content %}
 <section class="engine"><a href="https://mobirise.info/k">develop free website</a>
 </section><section class="header12 cid-rUxhpR275Y mbr-fullscreen mbr-parallax-background" id="header12-1">
@@ -9,21 +14,54 @@
 
 <div class="container">
   <div class="media-container">
-    <div class="row align-center">
-      <div class="col-12">
-        <div class="display-2 text-light">Optimal route (sample - not complete yet)</div>
-      </div>
+    <div class="row align-center mt-5">
+        <div class="display-2 text-light">Route: {{data['inv'][data['src']]}} to {{data['inv'][data['dst']]}}</div>
     </div>
-    <div class="row mt-5 align-center">
-      <div class="col-3"></div>
-      <div class="col-6">
-        <img src="static/images/sample_graph.png" class="img-fluid" alt="Responsive image">
+    <div class="row mt-5 align-center bg-light round_div">
+      <div class="col-12 p-5">
+        <div id="canvas"></div>
       </div>
-      <div class="col-3"></div>
     </div>
   </div>
 </div>
 
 </section>
+<script>
+  var G = new jsnx.Graph();
+  G.addNode({{data['src']}}, {label: "{{data['inv'][data['src']]}}", color: '#008A00'});
+  G.addNode({{data['dst']}}, {label: "{{data['inv'][data['dst']]}}", color: '#008A00'});
 
+  {% for v in data['rest'] %}
+    G.addNode({{v}}, {label: "{{data['inv'][v]}}", color: '#0064C7'});
+  {% endfor %}
+
+  G.addEdgesFrom({{data['edges']}}, {color: '#FF4500'});
+  G.addEdgesFrom({{data['path-edges']}}, {color: '#008A00'});
+
+  var color = d3.scale.category20();
+  jsnx.draw(G, {
+      element: '#canvas',
+      layoutAttr: {
+          charge: -320,
+          linkDistance: 100
+      },
+      nodeAttr: {
+          r: 30,
+          title: function(d) { return d.label;}
+      },
+      nodeStyle: {
+              fill: function(d) {
+                  return d.data.color;
+              }
+      },
+      edgeStyle: {
+        fill: function(d) {
+                return d.data.color;
+              }
+      },
+      withLabels: true,
+      labels: 'label',
+      height: 300
+  });
+</script>
 {% endblock %}

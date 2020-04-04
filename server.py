@@ -3,6 +3,7 @@ from sqlalchemy import exc,func
 from flask_sqlalchemy import SQLAlchemy
 from pprint import pprint
 import datetime
+import random
 
 app = Flask(__name__)
 
@@ -114,7 +115,41 @@ def bus():
 
 @app.route("/bus_submit", methods=['POST'])
 def bus_submit():
-    return render_template("bus_submit.html",)
+    src = int(request.form['src'])
+    dst = int(request.form['dst'])
+    print(src,dst)
+    path_len = random.randint(3,5)
+    chosen = -1
+    path = []
+    nodes = [n for n in range(7) if n not in [src,dst]]
+    for j in range(path_len):
+        if chosen != -1:
+            nodes.remove(chosen)
+        chosen = random.choice(nodes)
+        path.append(chosen)
+    path = [src] + path + [dst]
+    path_edges = [[path[i-1],path[i]] for i in range(1,len(path))]
+
+    rest = list(range(7))
+    rest.remove(src)
+    rest.remove(dst)
+
+    edges = []
+    for i in rest:
+        for j in rest:
+            if i!=j:
+                edges.append([i,j])
+            
+    data = {
+        'src': src,
+        'dst': dst,
+        'rest': rest,
+        'inv': ['Kalyan-Dombivali', 'Navi Mumbai', 'Thane', 'Thane', 'Ulhasnagar', 'Vasai-Virar', 'Palghar', 'Mira-Bhayandar'],
+        'edges': edges,
+        'path-edges': path_edges,
+    }
+    print(data  )
+    return render_template("bus_submit.html",data=data)
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
